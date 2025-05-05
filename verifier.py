@@ -257,11 +257,6 @@ def recover_from_certificate(file_name):
 
 
 # ---------------------------- Main ----------------------------
-
-M = [[8, 4], [2, 4]]
-print(is_positive_semidefinite(M))
-exit(0)
-
 # Read and ask for input
 # =================================================
 parser = argparse.ArgumentParser(
