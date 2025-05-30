@@ -7,7 +7,61 @@
 
 \maketitle
 
-\textbf{\large Verifier usage}
+\textbf{\large Full verification}
+
+The verification programs are written in Python 3. The full verification, which takes
+around 85 hours in a modern personal computer, can be performed by executing the
+\verb|full-verify| program inside a folder containing all six certificates:
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+$ python3 full-verify.py
+\end{Verbatim}
+
+The program calls the \verb|validator| and \verb|verifier| programs on each
+certificate. The calls are made in the following way:
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+$ python3 validator.py prop_3_1_c5k4.pickle
+$ python3 verifier.py prop_3_1_c5k4.pickle
+\end{Verbatim}
+
+\textbf{\large Validate objectives and assumptions}
+
+The \verb|validator| program loads a certificate as a Python pickle file and verifies
+that that the objective function and positivity assumptions of its corresponding
+proposition are correctly translated into the certificate. Its usage message is the
+following.
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+usage: validator.py [-h] {prop_3_1_c5k4.pickle,prop_3_1_c7.pickle,
+                          prop_3_2_c5k4.pickle,prop_3_2_c7.pickle,
+                          prop_3_3_c5k4.pickle,prop_3_3_c7.pickle}
+
+Validates that the objectives and assumptions of a given certificate correspond
+to those in the corresponding proposition.
+
+positional arguments:
+  {prop_3_1_c5k4.pickle,prop_3_1_c7.pickle,prop_3_2_c5k4.pickle,
+   prop_3_2_c7.pickle,prop_3_3_c5k4.pickle,prop_3_3_c7.pickle}
+                        path of the pickle file
+
+options:
+  -h, --help            show this help message and exit
+
+examples:
+  $ python validator.py prop_3_1_c5k4.pickle
+\end{Verbatim}
+
+The objective functions and positivity assumptions for each propositions can be found
+in the following locations.
+
+\begin{itemize}
+\item Proposition~$3.1$: Lines~$179$--$186$.
+\item Proposition~$3.2$: Lines~$189$--$250$.
+\item Proposition~$3.3$: Lines~$253$--$374$.
+\end{itemize}
+
+\textbf{\large Verify the certificates}
 
 The verifier program loads a certificate as a Python pickle file, interactively asks
 for a pair of indices, and then verifies the constraints corresponding to the
@@ -38,7 +92,7 @@ examples:
   Enter two integers in the range [1,28080] (e.g., `1 14040'): 5 5
 \end{Verbatim}
 
-\textbf{\large Program specification}
+\textbf{\large Verifier specification}
 
 We work in the theory of~$3$-uniform hypergraphs, where every vertex is either red or
 blue. For a type~$\tau$ and integers~$m' \leq m$ such
