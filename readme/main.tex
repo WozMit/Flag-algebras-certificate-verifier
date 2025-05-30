@@ -117,7 +117,7 @@ that~$2m' - \left|\tau\right| \leq m$, we make the following definitions.
 \item For a flag~$F \in \cF_m$, we
   let~$M_F^{\tau, m} \in \reals^{\cF_{m'}^\tau \times \cF_{m'}^\tau}$ be the real symmetric matrix
   obtained from~$\lllbr \cF_{m'}^{\tau} \otimes \cF_{m'}^{\tau} \rrrbr_{\tau}$ by applying
-  entry-wise the~$d(\cdot, F)$ density operator.
+  entry-wise the~$p(\cdot, F)$ density operator.
 \end{itemize}
 We now fix:
 \begin{enumerate}[label=(\textit{\roman*})]
@@ -136,7 +136,7 @@ Then, we need to verify that:
 and for all~$F \in \cF_m$ and coefficients~$c_F \geq 0$,
 \begin{equation}
   \label{eq:all_constraints}
-  \lambda - d(T, F) = \sum_{i \in [k]} \langle M_F^{\tau_i, m_i}, X^{\tau_i}\rangle + \sum_{i \in [p]} e_i d(f^{(i)}, F) + c_F.
+  \lambda - p(T, F) = \sum_{i \in [k]} \langle M_F^{\tau_i, m_i}, X^{\tau_i}\rangle + \sum_{i \in [p]} e_i p(f^{(i)}, F) + c_F.
 \end{equation}
 The verification of~\eqref{eq:positive_semidefinite} is done by attempting to decompose a
 matrix~$M = LDL^{\text{T}}$, where~$L$ is a lower triangular matrix with~$1$'s on the
