@@ -1,0 +1,226 @@
+\ProvidesPackage{mystyle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pdfsync}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[foot]{amsaddr}
+\usepackage{mathtools}
+\usepackage{aligned-overset}
+
+\usepackage{graphicx}
+\usepackage{xparse} 
+\usepackage{comment}
+\usepackage{fancyhdr}
+%\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[unicode,
+bookmarksopen=true,
+bookmarksopenlevel=1,
+colorlinks=true,
+linkcolor=darkblue,
+linktoc=page,
+citecolor=darkblue,
+hypertexnames=false,   % Previously, the hyperref links the
+                       % labeling to the corresponding
+                       % count. However, as we reset the counter
+                       % of the claim at the end of the proof,
+                       % the hyperref links the label of the
+                       % claim in the proof section to the claim
+                       % in another section. This premise
+                       % (hypertexnames=false) will forbid the
+                       % hyperref to link to the corresponding
+                       % counter, to resolve this issue.
+]{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+% %\usetikzlibrary{snakes}
+
+\usepackage{verbatim}
+\usepackage[margin=1in]{geometry}
+
+\usepackage[capitalise]{cleveref}
+\crefname{equation}{}{}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{claim}{Claim}{Claims}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage[font={small}]{caption}
+% Equation numbering by section
+% \numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{noname}{}[theorem]
+\newtheorem{obs}[theorem]{Observation}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{remark}{Remark}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{con}[theorem]{Construction}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{question}[theorem]{Question}
+
+\theoremstyle{remark}
+\newtheorem{notation}{Notation}
+
+%for restating theorems
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\declaretheorem[name=Theorem,numberwithin=section]{retheorem}
+
+\usepackage[normalem]{ulem}
+
+\usepackage{etoolbox}
+\newtheoremstyle{claimstyle}{5pt}{5pt}{\em}{}{\bf}{.}{5pt}{}
+\theoremstyle{claimstyle}
+\newtheorem{claim}[theorem]{Claim}
+
+\newenvironment{claimproof}{\noindent \textit{Proof of
+    claim.}}{\hfill\ensuremath{\blacklozenge}\vspace{5pt}}
+
+\newtheoremstyle{stepstyle}{5pt}{5pt}{\em}{}{\bf}{.}{5pt}{}
+\theoremstyle{stepstyle}
+\newtheorem{pf-step}{Step}
+\AtEndEnvironment{proof}{\setcounter{pf-step}{0}}
+
+
+\usepackage{stmaryrd}
+\newcommand{\lllbr}{\left\llbracket}
+  \newcommand{\rrrbr}{\right\rrbracket}
+
+\usepackage{fancyvrb}
+
+% Symbols
+\newcommand{\e}{\textrm{e}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\eps}{\ensuremath{\varepsilon}}
+\newcommand\cA{{\mathcal A}}
+\newcommand\cB{{\mathcal B}}
+\newcommand\cC{{\mathcal C}}
+\newcommand\cD{{\mathcal D}}
+\newcommand\cE{{\mathcal E}}
+\newcommand\cF{{\mathcal F}}
+\newcommand{\cG}{\ensuremath{\mathcal G}}
+\newcommand{\cH}{\ensuremath{\mathcal H}}
+\newcommand{\cJ}{\ensuremath{\mathcal J}}
+\newcommand{\cK}{\ensuremath{\mathcal K}}
+\newcommand{\cR}{\ensuremath{\mathcal R}}
+\newcommand{\cM}{\ensuremath{\mathcal M}}
+\newcommand{\cN}{\ensuremath{\mathcal N}}
+\newcommand{\cV}{\ensuremath{\mathcal V}}
+\newcommand{\cP}{\ensuremath{\mathcal P}}
+\newcommand{\cW}{\ensuremath{\mathcal W}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\tY}{\widetilde{Y}}
+\newcommand{\tM}{\widetilde{M}}
+\newcommand{\tU}{\widetilde{U}}
+\newcommand\reals{{\mathbb R}}
+\newcommand\integers{{\mathbb Z}}
+\newcommand\naturals{{\mathbb N}}
+\newcommand{\curlyE}{\ensuremath{\mathcal E}}
+\newcommand{\ordering}{\ensuremath{\preceq}}
+\newcommand{\fwdnbr}{\ensuremath{N^\ordering}}
+\newcommand{\fwddeg}{\ensuremath{d^\ordering}}
+\newcommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
+
+% Functions
+\newcommand{\s}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\pr}[1]{\mathbb{P}\left[#1\right]}
+\newcommand{\modu}[1]{\:({\rm mod}\,\,#1)}
+\newcommand{\Prob}[1]{\ensuremath{%
+    \mathbb P\left(#1\right) }}
+
+\newcommand{\ProbCond}[2]{\ensuremath{%
+    \mathbb P\left[#1\:\middle|\:#2\right] }}
+
+\newcommand{\Var}[1]{\ensuremath{%
+    \textup{\textrm{Var}}#1 }}
+
+\newcommand{\Expect}[1]{\ensuremath{%
+    \mathbb E#1 }}
+
+\newcommand{\rank}{\textrm{rank}}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\ex}[1]{{\rm ex}\left(#1\right)}
+\newcommand{\abs}[1]{\left\lvert{#1}\right\rvert}
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\aas}{a.a.s.\ }
+\newcommand{\whp}{w.h.p.\ }
+
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\defi}{def}
+
+% Define colours
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\definecolor{cerisepink}{rgb}{0.93, 0.23, 0.51}
+\definecolor{chocolate(traditional)}{rgb}{0.48, 0.25, 0.0}
+\definecolor{chromeyellow}{rgb}{1.0, 0.8, 0.0}
+\definecolor{bluegreen}{rgb}{0.0, 0.8, 0.9}
+\definecolor{darkorange}{rgb}{0.8, 0.4, 0.0}
+\definecolor{aonthergreen}{rgb}{0.0, 0.8, 0.4}
+
+%\geometry{a4paper,tmargin=2.7cm,bmargin=2.7cm,lmargin = 2.3cm,rmargin = 2.3cm, headheight=1cm,headsep=1cm,footskip=1cm}
+% \renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\blacklozenge$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+
+\def\TASK#1{}
+\let\TASK=\footnote             % COMMENT OUT for clean output
+
+\def\COMMENT#1{}
+%\COMMENT{Indeed, for }\let\COMMENT=\footnote          % COMMENT OUT for clean output
+
+\def\O{\mathcal{O}}
+
+%Line splitting stuff
+\newcommand{\splitatcommas}[1]{%
+  \begingroup
+  \ifnum\mathcode`,="8000
+  \else
+    \begingroup\lccode`~=`, \lowercase{\endgroup
+      \edef~{\mathchar\the\mathcode`, \penalty0 \noexpand\hspace{0pt plus 1em}}%
+    }\mathcode`,="8000
+  \fi
+  #1%
+  \endgroup
+}
+\newcommand{\listing}[1]{\splitatcommas{#1}} %Use this command to define lists of objects that allow line breaks at commas.
+\newcommand{\set}[1]{\{\splitatcommas{#1}\}} %Use this command to define sets that allow line breaks at commas.
+\newcommand{\Set}[1]{\left\{\splitatcommas{#1}\right\}} %The same with \left and \right.
+
+% Appendix
+\newcommand{\APPENDIX}[1]{}
+\newcommand{\NOTAPPENDIX}[1]{#1}
+\renewcommand{\APPENDIX}[1]{#1}                    %COMMENT OUT FOR NO APPENDIX
+\renewcommand{\NOTAPPENDIX}[1]{}                   %COMMENT OUT FOR NO APPENDIX
+
+
+\AtBeginDocument{%
+   \def\MR#1{}
+} %To suppress MR numbers
+
+% Paragraph indent and skip
+\parindent 0mm
+\parskip   5mm
